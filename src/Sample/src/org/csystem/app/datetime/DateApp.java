@@ -18,7 +18,25 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app.datetime;
 
-public class DateUtilApp {
+import org.csystem.util.datetime.Date;
+
+public class DateApp {
+
+    private static void printDateTR(int day, int month, int year)
+    {
+        Date d = new Date(day, month, year);
+
+        System.out.println(d.toLongDateStringTR());
+        System.out.println(d.isWeekend() ? "Bugün kurs var. Tekrar yaptınız mı?" : "Kurs günü yaklaşıyor. Tekrar yapmayı unutmayınız!...");
+    }
+
+    private static void printDateEN(int day, int month, int year)
+    {
+        Date d = new Date(day, month, year);
+
+        System.out.println(d.toLongDateStringEN());
+        System.out.println(d.isWeekend() ? "That is the course day. Did you review?" : "Course day is coming. Do not forget to review!...");
+    }
     public static void run()
     {
         java.util.Scanner kb = new java.util.Scanner(System.in);
@@ -32,8 +50,8 @@ public class DateUtilApp {
             if (day == 0)
                 break;
 
-            DateUtil.printDateTR(day, month, year);
-            DateUtil.printDateEN(day, month, year);
+            printDateTR(day, month, year);
+            printDateEN(day, month, year);
         }
 
         System.out.println("Tekrar yapıyor musunuz?");

@@ -1,10 +1,12 @@
 package org.csystem.app.school;
 
+import org.csystem.util.datetime.Date;
+
 public class LectureInfo {
     private String m_studentName;
     private String m_lectureName;
-    private String m_midtermDate;
-    private String m_finalDate;
+    private Date m_midtermDate;
+    private Date m_finalDate;
     private int m_midtermGrade;
     private int m_finalGrade;
 
@@ -28,22 +30,22 @@ public class LectureInfo {
         m_lectureName = lectureName;
     }
 
-    public String getMidtermDate()
+    public Date getMidtermDate()
     {
         return m_midtermDate;
     }
 
-    public void setMidtermDate(String midtermDate)
+    public void setMidtermDate(Date midtermDate)
     {
         m_midtermDate = midtermDate;
     }
 
-    public String getFinalDate()
+    public Date getFinalDate()
     {
         return m_finalDate;
     }
 
-    public void setFinalDate(String finalDate)
+    public void setFinalDate(Date finalDate)
     {
         m_finalDate = finalDate;
     }
