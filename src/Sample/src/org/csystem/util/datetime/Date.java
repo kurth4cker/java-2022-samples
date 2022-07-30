@@ -95,7 +95,7 @@ public class Date {
     private int m_day, m_month, m_year;
     private int m_dayOfWeek;
 
-    public Date() //Bu ctor içerisinde yazılanların bilinmesi gerekmez. Sadecxe default'un anlamına odaklanınız
+    public Date() //Bu ctor içerisinde yazılanların bilinmesi gerekmez. Sadece default'un anlamına odaklanınız
     {
         LocalDate today = LocalDate.now();
 
@@ -115,6 +115,9 @@ public class Date {
 
     public void setDay(int day)
     {
+        if (m_day == day)
+            return;
+
         checkDay(day, "Invalid day value:" + day);
         set(day, m_month, m_year);
     }
@@ -126,6 +129,9 @@ public class Date {
 
     public void setMonthValue(int month)
     {
+        if (m_month == month)
+            return;
+
         checkDay(month, "Invalid month value:" + month);
         set(m_day, month, m_year);
     }
@@ -137,6 +143,9 @@ public class Date {
 
     public void setYear(int year)
     {
+        if (m_year == year)
+            return;
+
         checkDay(year, "Invalid year value:" + year);
         set(m_day, m_month, year);
     }
