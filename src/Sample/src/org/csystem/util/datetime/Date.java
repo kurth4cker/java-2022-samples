@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Date.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 30.07.2022
+	LAST UPDATE : 31.07.2022
 
 	Date class that represents a local date
 
@@ -11,6 +11,9 @@
 package org.csystem.util.datetime;
 
 import java.time.LocalDate;
+
+import static org.csystem.util.datetime.DateUtil.MONTHS;
+import static org.csystem.util.datetime.DateUtil.DAY_OF_WEEKS;
 
 public class Date {
     private static final String [] MONTHS_TR = {"", "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz",
@@ -27,7 +30,7 @@ public class Date {
         int totalDays = day;
 
         for (int m = month - 1; m >= 1; --m)
-            totalDays += DateUtil.getDays(m, year);
+            totalDays += MONTHS[m - 1].getDays(year);
 
         return totalDays;
     }
@@ -37,7 +40,7 @@ public class Date {
         int totalDays = getDayOfYear(day, month, year);
 
         for (int y = 1900; y < year; ++y)
-            totalDays += DateUtil.isLeapYear(y) ? 366 : 365;
+            totalDays += Month.isLeapYear(y) ? 366 : 365;
 
         return totalDays % 7;
     }
@@ -54,7 +57,7 @@ public class Date {
 
     private static boolean isValidDate(int day, int month, int year)
     {
-        return  1 <= day && day <= 31 && 1 <= month && month <= 12 && day <= DateUtil.getDays(month, year);
+        return  1 <= day && day <= 31 && 1 <= month && month <= 12 && day <= MONTHS[month - 1].getDays(year);
     }
 
     private static void doWorkForException(String message)
@@ -102,6 +105,12 @@ public class Date {
         set(today.getDayOfMonth(), today.getMonthValue(), today.getYear());
     }
 
+    public Date(int day, Month month, int year)
+    {
+        checkDate(day, month.ordinal() + 1, year, String.format("Invalid date value(s) -> day: %d, year: %d", day, year));
+        set(day, month.ordinal() + 1, year);
+    }
+
     public Date(int day, int month, int year)
     {
         checkDate(day, month, year, String.format("Invalid date value(s) -> day: %d, month value: %d, year: %d", day, month, year));
@@ -120,6 +129,16 @@ public class Date {
 
         checkDay(day, "Invalid day value:" + day);
         set(day, m_month, m_year);
+    }
+
+    public Month getMonth()
+    {
+        return MONTHS[m_month - 1];
+    }
+
+    public void setMonth(Month month)
+    {
+        setMonthValue(month.ordinal() + 1);
     }
 
     public int getMonthValue()
@@ -150,9 +169,9 @@ public class Date {
         set(m_day, m_month, year);
     }
 
-    public int getDayOfWeekValue()
+    public DayOfWeek getDayOfWeek()
     {
-        return m_dayOfWeek;
+        return DAY_OF_WEEKS[m_dayOfWeek];
     }
 
     public String getDayOfWeekTR()
@@ -167,7 +186,7 @@ public class Date {
 
     public boolean isLeapYear()
     {
-        return DateUtil.isLeapYear(m_year);
+        return Month.isLeapYear(m_year);
     }
 
     public boolean isWeekend()

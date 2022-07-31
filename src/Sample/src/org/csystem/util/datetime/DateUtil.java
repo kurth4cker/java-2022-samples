@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : DateUtil.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 30.07.2022
+	LAST UPDATE : 31.07.2022
 
 	Utility class for Date operations
 
@@ -17,18 +17,8 @@ public class DateUtil {
 	{
 	}
 
-	private static final int [] DAYS_OF_MONTHS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-
-	public static int getDays(int month, int year)
-	{
-		return month == 2 && isLeapYear(year) ? 29 : DAYS_OF_MONTHS[month];
-	}
-
-	public static boolean isLeapYear(int year)
-	{
-		return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
-	}
+	static final DayOfWeek [] DAY_OF_WEEKS = DayOfWeek.values();
+	static final Month [] MONTHS = Month.values();
 
 
 	public static Date randomDate()
@@ -60,7 +50,7 @@ public class DateUtil {
 	{
 		int year = r.nextInt(1900, 2101);
 		int month = r.nextInt(1, 13);
-		int day = r.nextInt(1, getDays(month, year) + 1);
+		int day = r.nextInt(1, MONTHS[month - 1].getDays(year) + 1);
 
 		return new Date(day, month, year);
 	}
