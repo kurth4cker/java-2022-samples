@@ -1,4 +1,4 @@
-package org.csystem.app.game.ballfall;
+package org.csystem.game.ballfall;
 
 public class BallFall {
 	private String m_shape;

@@ -1,6 +1,8 @@
 package org.csystem.app.game.ballfall;
 
-public class BallFallGameApp {	
+import org.csystem.game.ballfall.BallFall;
+
+public class BallFallGameApp {
 	public static void run()
 	{
 		java.util.Scanner kb = new java.util.Scanner(System.in);

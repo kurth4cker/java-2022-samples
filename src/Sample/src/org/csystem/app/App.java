@@ -1,48 +1,35 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	Sınıflararası İlişkiler:
+	Sınıflar arası ilişkiler: Sınıflar arası ilişkiler aslında nesneler arasındaki ilişkiler olarak düşünülmeldir. Örneğin,
+	uçak ile pilotları arasında bir ilişki vardır. Ya da araba ile motoru arasında da bir ilişki vardır. Burada uçak
+	nesnesinin pilot nesneleri arasındaki ilişkiden bahsedilir. Benzer şekilde araba nesnesinin motor nesnesi olan
+	ilişkiden bahsedilmiş olur. Ancak şüphesiz bu ilişkilere uygun olarak sınıflar yazılmalıdır.
+
+	Nesne yönelimli programlama tekniği kullanılarak geliştirilecek bir projenin kodlama aşamasına gelindiğinde önce sınıflar
+	ve aralarındaki ilişkiler belirlenir. Sonra kodlamaya geçilir. Sınıflar ve aralarındaki ilişkiler belirlenirken, sınıfların
+	ve nesnelerin konuya (domain) ilişkin durumları düşünülür.
+
+	Anahtar Notlar: Bir projenin müşteri ile görüşülmesinden (ihtiyaçların belirlenmesi için) teslime (deployment) kadar
+	geçen sürecin çeşitli şemalar ile anlatılmasını sağlayan UML (Unified Modeling Language) denilen bir araç bazı
+	durumlarda kullanılabilmektedir. Bu aracın önemli ve geliştiriciler ilgilendiren şemalarından birisi
+	"sınıf şeması (class diagram)"'dır. Bu şema, kodlamaya yönelik ve kodlamaya başlamadan önce yapılır. Bu şemada sınıfların
+	detayları ve aralarındaki ilişkiler çizilir.
+
+	Anahtar Notlar: UML her zaman ve her detayı ile kullanılmalı mıdır? Bunun için verilecek cevap nettir: Hayır.
+	Gerektiğinde ve gerektiği kadar kullanılmalıdır.
+
+
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
-
-import org.csystem.app.datetime.DateApp;
-
-import java.util.Arrays;
 
 class App {
 	public static void main(String [] args)
 	{
-		DateApp.run();
+
 	}
 }
 
-class Color {
-	private static final Color [] COLORS =
-			{new Color(0), new Color(1), new Color(2), new Color(3), new Color(4)};
-	public static final Color RED = COLORS[0];
-	public static final Color GREEN = COLORS[1];
-	public static final Color BLUE = COLORS[2];
-	public static final Color WHITE = COLORS[3];
-	public static final Color BLACK = COLORS[4];
-	private final int m_ordinal;
 
-	private Color(int ordinal)
-	{
-		m_ordinal = ordinal;
-	}
 
-	public static Color [] values()
-	{
-		return Arrays.copyOf(COLORS, COLORS.length);
-	}
 
-	public int ordinal()
-	{
-		return m_ordinal;
-	}
 
-	//...
 
-}
-
-enum MyColor {
-	RED, GREEN, BLUE, WHITE, BLACK
-}

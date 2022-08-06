@@ -1,4 +1,4 @@
-package org.csystem.app.game.lotto;
+package org.csystem.app.simulation.lotto;
 
 import org.csystem.util.numeric.NumberUtil;
 

@@ -1,7 +1,5 @@
 package org.csystem.app.simulation.lotto;
 
-import org.csystem.app.game.lotto.Lotto;
-
 public class LottoProbabilitySimulation {
     private final int m_count;
     private double m_game1Prob;
