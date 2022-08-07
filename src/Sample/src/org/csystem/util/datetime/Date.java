@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Date.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 31.07.2022
+	LAST UPDATE : 07.08.2022
 
 	Date class that represents a local date
 
@@ -107,8 +107,7 @@ public class Date {
 
     public Date(int day, Month month, int year)
     {
-        checkDate(day, month.ordinal() + 1, year, String.format("Invalid date value(s) -> day: %d, year: %d", day, year));
-        set(day, month.ordinal() + 1, year);
+        this(day, month.ordinal() + 1, year);
     }
 
     public Date(int day, int month, int year)

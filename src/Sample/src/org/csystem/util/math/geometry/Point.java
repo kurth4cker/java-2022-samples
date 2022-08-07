@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Point.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 24.07.2022
+	LAST UPDATE : 07.08.2022
 
 	Immutable Point class that represents a 2(two) dimensional point in
 	Cartesian plane
@@ -17,13 +17,12 @@ public class Point {
 	
 	public Point()
 	{
-		m_x = m_y = 0;
+		this(0);
 	}
 	
 	public Point(int x)
 	{
-		m_x = x;
-		m_y = 0;
+		this(x, 0);
 	}
 	
 	public Point(int x, int y)
