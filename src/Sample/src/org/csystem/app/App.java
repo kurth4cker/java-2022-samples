@@ -1,38 +1,49 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	A ile B arasındaki "association" ilişkisi
+
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 class App {
 	public static void main(String [] args)
 	{
-		B b1 = new B(/*...*/);
-		B b2 = new B(/*...*/);
-		A a = new A();
-
-		a.doWork(b1);
-
-		//...
-
-		a.doWork(b2);
+		B x = new B();
+		System.out.println("----------------------------------------");
+		B y = new B(10);
+		System.out.println("----------------------------------------");
+		C z = new C();
+		System.out.println("----------------------------------------");
+		C t = new C(10);
 	}
 }
 
+class C extends B {
+	public C()
+	{
+		System.out.println("I am a default ctor of C");
+	}
+
+	public C(int x)
+	{
+		System.out.println("I am a ctor of C with parameter int");
+	}
+}
+
+class B extends A {
+	public B()
+	{
+		System.out.println("I am a default ctor of B");
+	}
+
+	public B(int x)
+	{
+		System.out.println("I am a ctor of B with parameter int");
+	}
+}
 
 class A {
 	//...
-
-	public void doWork(B b)
+	public A()
 	{
-		b.doSomething();
-		//...
-	}
-}
-
-class B {
-	//...
-	public void doSomething()
-	{
-		//...
+		System.out.println("I am a default ctor of A");
 	}
 }
