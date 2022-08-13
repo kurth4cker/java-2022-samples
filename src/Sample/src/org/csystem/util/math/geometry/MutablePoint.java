@@ -15,7 +15,6 @@ public class MutablePoint {
 	private int m_x;
 	private int m_y;
 
-
 	public MutablePoint()
 	{
 	}

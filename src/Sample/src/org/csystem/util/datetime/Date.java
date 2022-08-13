@@ -150,7 +150,7 @@ public class Date {
         if (m_month == month)
             return;
 
-        checkDay(month, "Invalid month value:" + month);
+        checkMonth(month, "Invalid month value:" + month);
         set(m_day, month, m_year);
     }
 
@@ -164,7 +164,7 @@ public class Date {
         if (m_year == year)
             return;
 
-        checkDay(year, "Invalid year value:" + year);
+        checkYear(year, "Invalid year value:" + year);
         set(m_day, m_month, year);
     }
 

@@ -192,7 +192,7 @@ public class MutableFraction {
 
     public void inc(int value)
     {
-        m_a += m_b;
+        m_a += m_b * value;
     }
 
     public void inc()

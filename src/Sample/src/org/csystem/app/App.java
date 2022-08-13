@@ -1,48 +1,44 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	Sınıf Çalışması: Bir kesri temsil eden MutableFraction isimli sınıfı aşağıdaki açıklamalara göre yazınız
-	Açıklamalar:
-	- Sınıf Matematikteki bir kesri temsil ettiğinden pay ve payda değerleri tutulacaktır
-
-	- Sınıfın ilgili set ve get metotları yazılacaktır
-
-	- Pay'ın sıfırdan farklı, paydanın sıfır olması durumunda tanımsızlığa ilişkin bir mesaj verilecektir, pay ve paydanın
-	her ikisinin birden sıfır olması durumunda belirsizliğe ilişkin mesaj verilecektir. Her iki durumda da program
-	sonlandırılacaktır
-
-	- Kesir her durumda sadeleşmiş bir biçimde tutulacaktır. Örneğin kesrin pay ve paydası sırasıyla 4 ve 18 olarak
-	verildiğinde kesir 2 / 9 olarak tutulacaktır.
-
-	- Kesir negatif ise işaret payda bulunacaktır. Örneğin kesrin pay ve paydası sırasıyla 3 ve -4 olarak verilmişse
-	kesir -3 / 4 biçiminde tutulacaktır
-
-	- Kesrin pay ve paydasının ikisinin birden negatif olması durumunda kesir pozitif olarak tutulacaktır
-
-	- Kesrin payının sıfır olması durumunda payda ne olursa olsun 1(bir) yapılacaktır
-
-	- Sınıfın iki kesri toplayan, bir kesir ile bir tamsayıyı toplayan aşağıdaki gibi metotları olacaktır. Aynı işlemler
-	 çıkarma, çarpma ve bölme için de yapılacaktır
-
-	- Sınıfın kesri 1(bir) artıran ve bir azaltan inc ve dec metotları yazılacaktır
-
-	- Sınıfın toString metodu şu formatta yazı döndürecektir:
-	    3 / 10 kesri için -> 3 / 10 = 3.333333
-	    10 / 1 kesri için -> 10
-
-	 - Sınıfın public bölümünü değiştirmeden istediğiniz değişikliği ve eklemeleri yapabilirsiniz
+	String sınıfı immutable olduğundan WeatherInfo sınıfı ile  String sınıfı ilişki ne aggregation, ne de composition
+	ilişkisidir. İkisine de belirli ölçüde yakın olsa da tam olarak uymamaktadır. Bu özel bir durumdur ve genel ilişkileri
+	etkilemez. Bu ilişkiye isim verilmesi de gerekmez
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
-
-import org.csystem.util.math.MutableFraction;
 
 class App {
 	public static void main(String [] args)
 	{
-		MutableFraction mf = new MutableFraction(18, 27);
+		String name = "Any place";
+		double lat = 30.4;
+		double lng = 34.9;
 
-		System.out.println(mf.toString());
+		WeatherInfo wi = new WeatherInfo(name, lat, lng);
+		System.out.println(wi.toString());
 
-		mf.setNumerator(0);
-		System.out.println(mf.toString());
+		name = "Other place";
+
+		System.out.println(wi.toString());
 	}
 }
 
+class WeatherInfo {
+	private String m_place;
+	private double m_latitude;
+	private double m_longitude;
+
+	//...
+
+	public WeatherInfo(String place, double latitude, double longitude)
+	{
+		m_place = place;
+		m_latitude = latitude;
+		m_longitude = longitude;
+	}
+
+	//...
+
+	public String toString()
+	{
+		return String.format("%s:(%f, %f)", m_place, m_latitude, m_longitude);
+	}
+}
