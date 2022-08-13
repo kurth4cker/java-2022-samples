@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Time.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 30.07.2022
+	LAST UPDATE : 13.08.2022
 
 	Time class that represents a local time
 
@@ -9,18 +9,87 @@
 	All Rights Free
 -----------------------------------------------------------------------*/
 
-/*----------------------------------------------------------------------------------------------------------------------
-	Sınıf Çalışması: org.csystem.util.datetime paketi içerisindeki Time ve TimeUtil sınıflarını yazınız.
-	Açıklamalar:
-		- Sınıfın public bölümünü değiştirmeden diledğiniz kadar metot ya da veri ekleyebilirsiniz
-		- Zaman geçerlilik kontrolü yapılacaktır. Geçersiz olması durumunda program uygun mesaj verip sonlandırılacaktır
-----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.util.datetime;
 
 import java.time.LocalTime;
 
 public class Time {
     private int m_hour, m_minute, m_second, m_millisecond;
+
+    private static void doWorkForException(String message)
+    {
+        System.out.println(message);
+        System.exit(1); //Exception işlemleri konusuna kadar sabredin
+    }
+
+    private static boolean isValid(int value, int max)
+    {
+        return 0 <= value && value <= max;
+    }
+
+    private static boolean isValidHour(int hour)
+    {
+        return isValid(hour, 23);
+    }
+
+    private static boolean isValidMinute(int minute)
+    {
+        return isValid(minute, 59);
+    }
+
+    private static boolean isValidSecond(int second)
+    {
+        return isValid(second, 59);
+    }
+
+    private static boolean isValidMillisecond(int millisecond)
+    {
+        return isValid(millisecond, 999);
+    }
+
+    private static boolean isValidTime(int hour, int minute, int second, int millisecond)
+    {
+        return isValidHour(hour) && isValidMinute(minute) && isValidSecond(second) && isValidMillisecond(millisecond);
+    }
+
+    private static void checkHour(int value)
+    {
+        if (!isValidHour(value))
+            doWorkForException("Invalid hour value -> " + value);
+    }
+
+    private static void checkMinute(int value)
+    {
+        if (!isValidMinute(value))
+            doWorkForException("Invalid minute value -> " + value);
+    }
+
+    private static void checkSecond(int value)
+    {
+        if (!isValidSecond(value))
+            doWorkForException("Invalid second value -> " + value);
+    }
+
+    private static void checkMillisecond(int value)
+    {
+        if (!isValidMillisecond(value))
+            doWorkForException("Invalid millisecond value -> " + value);
+    }
+
+    private void checkTime(int hour, int minute, int second, int millisecond)
+    {
+        if (!isValidTime(hour, minute, second, millisecond))
+            doWorkForException(String.format("Invalid time value(s): hour -> %d, minute -> %d, second -> %d, millisecond -> %d",
+                    hour, minute, second, millisecond));
+    }
+
+    private void set(int hour, int minute, int second, int millisecond)
+    {
+        m_hour = hour;
+        m_minute = minute;
+        m_second = second;
+        m_millisecond = millisecond;
+    }
 
     public Time() //Bu ctor içerisinde yazılanların bilinmesi gerekmez. Sadece default ctor'un anlamına odaklanınız
     {
@@ -29,11 +98,23 @@ public class Time {
         m_hour = now.getHour();
         m_minute = now.getMinute();
         m_second = now.getSecond();
+        m_millisecond = now.getNano() / 1_000_000;
+    }
+
+    public Time(int hour, int minute)
+    {
+        this(hour, minute, 0);
+    }
+
+    public Time(int hour, int minute, int second)
+    {
+        this(hour, minute, second, 0);
     }
 
     public Time(int hour, int minute, int second, int millisecond)
     {
-       //TODO:
+        checkTime(hour, minute, second, millisecond);
+        set(hour, minute, second, millisecond);
     }
 
     public int getHour()
@@ -43,7 +124,11 @@ public class Time {
 
     public void setHour(int hour)
     {
-        //TODO:
+        if (hour == m_hour)
+            return;
+
+        checkHour(hour);
+        m_hour = hour;
     }
 
     public int getMinute()
@@ -53,7 +138,11 @@ public class Time {
 
     public void setMinute(int minute)
     {
-        //TODO:
+        if (minute == m_minute)
+            return;
+
+        checkMinute(minute);
+        m_minute = minute;
     }
 
     public int getSecond()
@@ -63,7 +152,11 @@ public class Time {
 
     public void setSecond(int second)
     {
-        //TODO:
+        if (second == m_second)
+            return;
+
+        checkSecond(second);
+        m_second = second;
     }
 
     public int getMillisecond()
@@ -73,24 +166,25 @@ public class Time {
 
     public void setMillisecond(int millisecond)
     {
-        //TODO:
+        if (millisecond == m_millisecond)
+            return;
+
+        checkMillisecond(millisecond);
+        m_millisecond = millisecond;
     }
 
     public String toString()
     {
-        //TODO:
-        return "11:14:34";
+        return String.format("%s:%02d", toShortTimeString(), m_second);
     }
 
     public String toShortTimeString()
     {
-        //TODO
-        return "11:14";
+        return String.format("%02d:%02d", m_hour, m_minute);
     }
 
     public String toLongTimeString()
     {
-        //TODO
-        return "11:14:34.123";
+        return String.format("%s.%03d", toString(), m_millisecond);
     }
 }

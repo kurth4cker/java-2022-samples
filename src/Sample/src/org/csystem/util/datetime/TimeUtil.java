@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : TimeUtil.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 30.07.2022
+	LAST UPDATE : 13.08.2022
 
 	Utility class for Time operations
 
@@ -19,8 +19,7 @@ public class TimeUtil {
 
 	public static Time randomTime(Random r)
 	{
-		//TODO:
-		return new Time();
+		return new Time(r.nextInt(24), r.nextInt(60), r.nextInt(60), r.nextInt(1000));
 	}
 
 	public static Time randomTime()
