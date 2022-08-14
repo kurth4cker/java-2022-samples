@@ -1,44 +1,26 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	String sınıfı immutable olduğundan WeatherInfo sınıfı ile  String sınıfı ilişki ne aggregation, ne de composition
-	ilişkisidir. İkisine de belirli ölçüde yakın olsa da tam olarak uymamaktadır. Bu özel bir durumdur ve genel ilişkileri
-	etkilemez. Bu ilişkiye isim verilmesi de gerekmez
+	Bir referans değişkenin iki tane türü vardır: static, dynamic
+
+	- static type: Referansın bildirildiği türdür. "Referansın türü" dendiğinde static tür anlaşılır. Derleme zamanına
+	ilişkin bir bilgidir ve değişmez.
+
+	- dynamic type: Referansın gösterdiği nesnenin gerçek türüdür. Çalışma zamanına ilişkindir ve değişebilir
+
+	Anahtar Notlar: Bir referansın dinamik türü String olarak aşağıdaki genel biçimi biçimi verilen çağrı ile elde
+	edilebilir.
+		<referans>.getClass().getName();
+	Buna göre x bir referans olmak üzere x referansının dinamik türü şu şekilde ekrana yazdırılabilir:
+		System.out.println(x.getClass().getName());
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 class App {
 	public static void main(String [] args)
 	{
-		String name = "Any place";
-		double lat = 30.4;
-		double lng = 34.9;
-
-		WeatherInfo wi = new WeatherInfo(name, lat, lng);
-		System.out.println(wi.toString());
-
-		name = "Other place";
-
-		System.out.println(wi.toString());
+		A a;
 	}
 }
 
-class WeatherInfo {
-	private String m_place;
-	private double m_latitude;
-	private double m_longitude;
-
+class A {
 	//...
-
-	public WeatherInfo(String place, double latitude, double longitude)
-	{
-		m_place = place;
-		m_latitude = latitude;
-		m_longitude = longitude;
-	}
-
-	//...
-
-	public String toString()
-	{
-		return String.format("%s:(%f, %f)", m_place, m_latitude, m_longitude);
-	}
 }
