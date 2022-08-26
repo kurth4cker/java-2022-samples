@@ -10,13 +10,15 @@ import java.util.Random;
 public class RandomObjectArrayFactory {
     private final Random m_random;
 
-    //String, Circle, int [], MutableFraction
+    //String, Circle, int [], Integer, Character, MutableFraction
     private Object createObject()
     {
-        return switch (m_random.nextInt(4)) {
+        return switch (m_random.nextInt(6)) {
             case 0 -> StringUtil.getRandomTextTR(m_random, m_random.nextInt(10, 15));
             case 1 -> new Circle(m_random.nextDouble(-10, 10));
             case 2 -> ArrayUtil.getRandomArray(m_random, m_random.nextInt(5, 10), 0, 99);
+            case 3 -> Integer.valueOf(m_random.nextInt(-128, 127));
+            case 4 -> Character.valueOf((char)(m_random.nextInt(26) + (m_random.nextBoolean() ? 'A': 'a')));
             default -> new MutableFraction(m_random.nextInt(-10, 10), m_random.nextInt(-10, 10));
         };
     }

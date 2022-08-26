@@ -1,77 +1,18 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	instanceof operatörü birinci operandına ilişkin referansın dinamik türünün ikinci operandına ilişkin türü kapsayıp
-	kapsamadığına bakar. Buradaki kapsama şüphesiz nesnesel kapsamadır. Aşağıdaki programı çalıştırıp durumu gözlemleyiniz
+	Boolean sınıfının valueOf metodu true ve false değerlerine ilişkin Boolean nesnelerini bir ön bellekten alır.
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
-
-import java.util.Random;
-import java.util.Scanner;
 
 class App {
 	public static void main(String [] args)
 	{
-		Scanner kb = new Scanner(System.in);
-		SampleAFactory factory = new SampleAFactory();
+		Boolean b1 = Boolean.valueOf(true);
+		Boolean b2 = Boolean.valueOf(true);
+		Boolean b3 = Boolean.valueOf(false);
+		Boolean b4 = Boolean.valueOf(false);
 
-		A a;
-
-		System.out.print("Bir sayı giriniz:");
-		int count = kb.nextInt();
-
-		while (count-- > 0) {
-			System.out.println("-----------------------------------------------------------");
-			a = factory.getRandomA();
-			System.out.println(a.getClass().getName());
-			if (a instanceof B b)
-				b.foo();
-			else
-				System.out.println("B veya B'den türemiş bir tür değil");
-			System.out.println("-----------------------------------------------------------");
-		}
+		System.out.println(b1 == b2 ? "Aynı nesne" : "Farklı nesneler");
+		System.out.println(b3 == b4 ? "Aynı nesne" : "Farklı nesneler");
 	}
 }
 
-class SampleAFactory {
-	private final Random m_random = new Random();
-
-	public A getRandomA()
-	{
-		int val = m_random.nextInt(5);
-
-		return switch (val) {
-			case 0 -> new B();
-			case 1 -> new C();
-			case 2 -> new D();
-			case 3 -> new E();
-			default -> new F();
-		};
-	}
-}
-
-class F extends E {
-	//...
-}
-
-class E extends A {
-	//...
-}
-
-class D extends B {
-	//...
-}
-
-class C extends B {
-	//...
-}
-
-class B extends A {
-	//...
-	public void foo()
-	{
-		System.out.println("B.foo");
-	}
-}
-
-class A {
-	//...
-}
