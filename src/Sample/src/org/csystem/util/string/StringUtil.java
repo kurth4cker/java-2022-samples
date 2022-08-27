@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : StringUtil.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 24.07.2022
+	LAST UPDATE : 27.08.2022
 
 	Utility class for string operations
 
@@ -14,7 +14,7 @@ import org.csystem.util.array.ArrayUtil;
 
 import java.util.Random;
 
-public class StringUtil {
+public final class StringUtil {
 	private static final String ALPHABET_TR = "abcçdefgğhıijklmnoöprsştuüvyz";
 	private static final String ALPHABET_EN = "abcdefghijklmnopqrstuwxvyz";
 	private static final String ALPHABET_CAPITAL_TR = "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ";
