@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : StringUtil.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 27.08.2022
+	LAST UPDATE : 10.09.2022
 
 	Utility class for string operations
 
@@ -12,6 +12,7 @@ package org.csystem.util.string;
 
 import org.csystem.util.array.ArrayUtil;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public final class StringUtil {
@@ -222,6 +223,36 @@ public final class StringUtil {
 			str += sVal + delimiter;
 		}
 
+		return str.substring(0, str.length() - delimiter.length());
+	}
+
+	public static String join(ArrayList list, String delimiter)
+	{
+		return join(list, delimiter, false);
+	}
+
+	public static String join(ArrayList list, char delimiter)
+	{
+		return join(list, delimiter, false);
+	}
+
+	public static String join(ArrayList list, char delimiter, boolean removeEmpties)
+	{
+		return join(list, delimiter + "", removeEmpties);
+	}
+
+	public static String join(ArrayList list, String delimiter, boolean removeEmpties)
+	{
+		String str = "";
+
+		for (Object o : list) {
+			String s = (String)o;
+
+			if (removeEmpties && s.isBlank())
+				continue;
+
+			str += s + delimiter;
+		}
 		return str.substring(0, str.length() - delimiter.length());
 	}
 
