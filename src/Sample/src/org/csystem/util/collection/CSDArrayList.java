@@ -47,6 +47,12 @@ public class CSDArrayList {
         m_elems = temp;
     }
 
+    private void enlargeCapacityIfNecessary()
+    {
+        if (m_elems.length == m_index)
+            changeCapacity(m_elems.length == 0 ? 1 : m_elems.length * 2);
+    }
+
     public CSDArrayList()
     {
         m_elems = new Object[DEFAULT_CAPACITY];
@@ -60,8 +66,7 @@ public class CSDArrayList {
 
     public boolean add(Object elem)
     {
-        if (m_elems.length == m_index)
-            changeCapacity(m_elems.length == 0 ? 1 : m_elems.length * 2);
+        enlargeCapacityIfNecessary();
 
         m_elems[m_index++] = elem;
 
@@ -70,7 +75,12 @@ public class CSDArrayList {
 
     public void add(int index, Object elem)
     {
-        //TODO:
+        enlargeCapacityIfNecessary();
+
+        for (int i = m_index++; i > index; --i)
+            m_elems[i] = m_elems[i - 1];
+
+        m_elems[index] = elem;
     }
 
     public int capacity()
@@ -109,7 +119,9 @@ public class CSDArrayList {
         checkIndex(index);
         Object oldElem = m_elems[index];
 
-        //...
+        for (int i = index; i < m_index - 1; ++i)
+            m_elems[i] = m_elems[i + 1];
+
         m_elems[--m_index] = null;
 
         return oldElem;
@@ -135,4 +147,6 @@ public class CSDArrayList {
         if (m_index != m_elems.length)
             changeCapacity(m_index);
     }
+
+    //...
 }
