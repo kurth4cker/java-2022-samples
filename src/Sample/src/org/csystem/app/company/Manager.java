@@ -27,4 +27,9 @@ public class Manager extends Employee {
         //...
         m_department = department;
     }
+
+    public double calculateInsurancePayment()
+    {
+        return m_salary * 1.6;
+    }
 }
