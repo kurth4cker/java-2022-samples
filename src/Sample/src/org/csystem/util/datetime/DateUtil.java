@@ -48,7 +48,7 @@ public class DateUtil {
 
 	public static Date randomDate(Random r, int minYear, int maxYear)
 	{
-		int year = r.nextInt(1900, 2101);
+		int year = r.nextInt(minYear, maxYear + 1);
 		int month = r.nextInt(1, 13);
 		int day = r.nextInt(1, MONTHS[month - 1].getDays(year) + 1);
 

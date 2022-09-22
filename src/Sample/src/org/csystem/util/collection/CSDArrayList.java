@@ -148,5 +148,11 @@ public class CSDArrayList {
             changeCapacity(m_index);
     }
 
+    public String toString()
+    {
+        //TODO:
+        return "[]";
+    }
+
     //...
 }
