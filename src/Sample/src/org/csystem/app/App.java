@@ -1,7 +1,6 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	try-finally yani catch bloksuz try deyimi ile exception nesnesi yakalanmadan ve aynı zamanda exception fırlatılsa da
-	fırlatılmasa da yapılacak bir işleme yönelik kod yazılabilir. Aşağıdaki örneği çeşitli değerler ile çalıştırarak
-	sonuçları gözlemleyiniz
+	checked bir exception throw edilen metot içerisinde eğer exception ele alınmayacaksa (handling) throws bildirimi
+	yapılmalıdır. Aksi durumda error oluşur. Aşağıdaki örneği inceleyiniz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
@@ -11,26 +10,6 @@ class App {
 	public static void main(String [] args)
 	{
 		try {
-			Util.doWork();
-		}
-		catch (IndeterminateException ex) {
-			System.out.println("Belirsiz");
-		}
-		catch (UndefinedException ex) {
-			System.out.println("Tanımsız");
-		}
-		finally {
-			System.out.println("main:finally");
-		}
-
-		System.out.println("Tekrar yapıyor musunuz?");
-	}
-}
-
-class Util {
-	public static void doWork()
-	{
-		try {
 			Scanner kb = new Scanner(System.in);
 			System.out.print("Bir sayı giriniz:");
 			double val = Double.parseDouble(kb.nextLine());
@@ -38,32 +17,50 @@ class Util {
 
 			System.out.printf("log10(%f) = %f%n", val, result);
 		}
-		finally {
-			System.out.println("doWork:finally");
+		catch (Throwable ex) {
+			ex.printStackTrace();
 		}
 
-		System.out.println("doWork sonu");
+		System.out.println("Tekrar yapıyor musunuz?");
 	}
 }
 
+
+
 class MathUtil {
-	public static double log10(double val)
+	public static double log10(double val) throws MathException
 	{
 		if (val < 0)
-			throw new IndeterminateException();
+			throw new MathException("Indeterminate", MathExceptionStatus.INDETERMINATE);
 
 		if (Math.abs(val - 0) < 0.0001)
-			throw new UndefinedException();
+			throw new MathException("Undefined", MathExceptionStatus.UNDEFINED);
 
 		return Math.log10(val);
 	}
 }
 
-class IndeterminateException extends RuntimeException {
-	//...
+enum MathExceptionStatus {
+	ZERO, NEGATIVE, UNDEFINED, INDETERMINATE, NAN
 }
 
+class MathException extends Exception {
+	private final MathExceptionStatus m_status;
 
-class UndefinedException extends RuntimeException {
-	//...
+	public MathException(String message, MathExceptionStatus status)
+	{
+		super(message);
+		m_status = status;
+	}
+
+	public String getMessage()
+	{
+		return String.format("Message:%s, Status:%s", super.getMessage(), m_status);
+	}
+
+	public MathExceptionStatus getStatus()
+	{
+		return m_status;
+	}
 }
+
