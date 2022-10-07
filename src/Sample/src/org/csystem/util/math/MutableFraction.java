@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : MutableFraction.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 13.08.2022
+	LAST UPDATE : 07.10.2022
 
 	MutableFraction class that represents fraction in mathematics
 
@@ -35,8 +35,7 @@ public class MutableFraction {
 
     private static void doWorkForException(String message)
     {
-        System.out.println(message);
-        System.exit(1); //Exception işlemleri konusuna kadar sabredin
+        throw new IllegalArgumentException(message);
     }
 
     private static void check(int a, int b)

@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : CSDArrayList.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 17.09.2022
+	LAST UPDATE : 07.10.2022
 
 	CSDArrayList class
 
@@ -17,14 +17,12 @@ public class CSDArrayList {
 
     private static void doWorkForIllegalArgumentException(String message)
     {
-        System.out.println(message);
-        System.exit(1); //exception işlemleri konusuna kadar sabredin
+        throw new IllegalArgumentException(message);
     }
 
     private static void doWorkForIndexOutOfBoundException(String message)
     {
-        System.out.println(message);
-        System.exit(1); //exception işlemleri konusuna kadar sabredin
+        throw new IndexOutOfBoundsException(message);
     }
 
     private static void checkCapacity(int capacity)

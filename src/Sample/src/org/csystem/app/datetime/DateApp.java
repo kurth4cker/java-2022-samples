@@ -19,23 +19,34 @@
 package org.csystem.app.datetime;
 
 import org.csystem.util.datetime.Date;
+import org.csystem.util.datetime.DateTimeException;
 
 public class DateApp {
 
     private static void printDateTR(int day, int month, int year)
     {
-        Date d = new Date(day, month, year);
+        try {
+            Date d = new Date(day, month, year);
 
-        System.out.println(d.toLongDateStringTR());
-        System.out.println(d.isWeekend() ? "Bugün kurs var. Tekrar yaptınız mı?" : "Kurs günü yaklaşıyor. Tekrar yapmayı unutmayınız!...");
+            System.out.println(d.toLongDateStringTR());
+            System.out.println(d.isWeekend() ? "Bugün kurs var. Tekrar yaptınız mı?" : "Kurs günü yaklaşıyor. Tekrar yapmayı unutmayınız!...");
+        }
+        catch (DateTimeException ignore) {
+            System.out.println("Geçersiz değerler");
+        }
     }
 
     private static void printDateEN(int day, int month, int year)
     {
-        Date d = new Date(day, month, year);
+        try {
+            Date d = new Date(day, month, year);
 
-        System.out.println(d.toLongDateStringEN());
-        System.out.println(d.isWeekend() ? "That is the course day. Did you review?" : "Course day is coming. Do not forget to review!...");
+            System.out.println(d.toLongDateStringEN());
+            System.out.println(d.isWeekend() ? "That is the course day. Did you review?" : "Course day is coming. Do not forget to review!...");
+        }
+        catch (DateTimeException ignore) {
+            System.out.println("Invalid values");
+        }
     }
     public static void run()
     {
