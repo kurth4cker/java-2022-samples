@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Console.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 02.10.2022
+	LAST UPDATE : 10.10.2022
 
 	Utility Console class for standard input and output operations
 
@@ -93,6 +93,12 @@ public final class Console {
     }
 
     //...
+
+    public static String read(String message)
+    {
+        System.out.print(message);
+        return ms_kb.nextLine();
+    }
 
     public static void write(String fmt, Object...objects)
     {
