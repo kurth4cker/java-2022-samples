@@ -1,19 +1,39 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	twr bloğu tek başına olabilir. Scanner sınıfı Closeable arayüzünü destekler
+	Generic'ler:
+	Derleme zamanında türden bağımsız kod yazabilmek için kullanılır (compile time polymorphism). Programcı generi bir tür
+	ya da metodu türden bağımsız yazar.
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
-
-import java.util.Scanner;
 
 class App {
 	public static void main(String [] args)
 	{
-		try (Scanner kb = new Scanner(System.in)) {
-			System.out.print("Bir sayı giriniz:");
-			int val = Integer.parseInt(kb.nextLine());
+		A a = new C();
+		IX ix;
 
-			System.out.println(val * val);
-		}
+		ix = (IX)a; //Haklı dönüşüm
+
+		a = new B();
+
+		ix = (IX)a; //Haksız dönüşüm
+
+
+		System.out.printf("Tekrar yapıyor musunuz?");
+
 	}
 }
 
+class C extends A implements IX {
+	//...
+}
+class B extends A {
+	//...
+}
+
+class A {
+	//...
+}
+
+interface IX {
+	//...
+}
