@@ -1,39 +1,26 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	Generic'ler:
-	Derleme zamanında türden bağımsız kod yazabilmek için kullanılır (compile time polymorphism). Programcı generi bir tür
-	ya da metodu türden bağımsız yazar.
+	Generic sınıflar açılım (instantiation) ile kullanılabilir. Açılım ilgili generic parametreni türünü belirtir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 class App {
 	public static void main(String [] args)
 	{
-		A a = new C();
-		IX ix;
+		A< as; //A'nın String açılımı
+		A<Integer> ai; //A'nın Integer açılımı
+		B<String, Integer, Boolean> b; //B'ninn String, Integer, Boolean açılımı
 
-		ix = (IX)a; //Haklı dönüşüm
-
-		a = new B();
-
-		ix = (IX)a; //Haksız dönüşüm
-
-
-		System.out.printf("Tekrar yapıyor musunuz?");
-
+		//...
 	}
 }
 
-class C extends A implements IX {
-	//...
-}
-class B extends A {
+
+class A<T> { //T generic parametre
+	private T m_t;
 	//...
 }
 
-class A {
-	//...
-}
-
-interface IX {
+abstract class B<T, K, L> { //T, K ve L generic parametreler
+	public abstract T foo(K k, L l);
 	//...
 }
