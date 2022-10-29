@@ -1,26 +1,13 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	Generic sınıflar açılım (instantiation) ile kullanılabilir. Açılım ilgili generic parametreni türünü belirtir
+	Generic parametrelere kısıt ya da sınır (constraint/upper bound) verilebilir. Bu işlem için extends anahtar sözcüğü
+	kullanılır. Aşağıdaki örnekte A sınıfı IX arayüzünü destekleyen bir tür ile açılabilir. Burada aslında A sınıfın generic
+	parametresi için bir kısı yani bir üst sınır verilmiştir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 class App {
 	public static void main(String [] args)
 	{
-		A< as; //A'nın String açılımı
-		A<Integer> ai; //A'nın Integer açılımı
-		B<String, Integer, Boolean> b; //B'ninn String, Integer, Boolean açılımı
 
-		//...
 	}
-}
-
-
-class A<T> { //T generic parametre
-	private T m_t;
-	//...
-}
-
-abstract class B<T, K, L> { //T, K ve L generic parametreler
-	public abstract T foo(K k, L l);
-	//...
 }
