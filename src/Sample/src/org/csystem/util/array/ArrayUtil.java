@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : ArrayUtil.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 27.08.2022
+	LAST UPDATE : 06.11.2022
 
 	Utility class for array operations
 
@@ -104,10 +104,22 @@ public final class ArrayUtil {
         }
     }
 
-    public static void fillRandomArray(Random r, int [] a, int min, int max) //[min, max]
+    public static void fillRandomArray(Random r, int [] a, int min, int bound)
     {
         for (int i = 0; i < a.length; ++i)
-            a[i] = r.nextInt(min, max + 1);
+            a[i] = r.nextInt(min, bound);
+    }
+
+    public static void fillRandomArray(Random r, double [] a, double min, double bound)
+    {
+        for (int i = 0; i < a.length; ++i)
+            a[i] = r.nextDouble(min, bound);
+    }
+
+    public static void fillRandomArray(Random r, long [] a, long min, long bound)
+    {
+        for (int i = 0; i < a.length; ++i)
+            a[i] = r.nextLong(min, bound);
     }
 
     public static int [] getHistogramData(int [] a, int n)
@@ -120,11 +132,29 @@ public final class ArrayUtil {
         return counts;
     }
 
-    public static int [] getRandomArray(Random r, int count, int min, int max) //[min, max]
+    public static int [] getRandomArray(Random r, int count, int min, int bound)
     {
         int [] a = new int[count];
 
-        fillRandomArray(r, a, min, max);
+        fillRandomArray(r, a, min, bound);
+
+        return a;
+    }
+
+    public static double [] getRandomArray(Random r, int count, double min, double bound)
+    {
+        double [] a = new double[count];
+
+        fillRandomArray(r, a, min, bound);
+
+        return a;
+    }
+
+    public static long [] getRandomArray(Random r, int count, long min, long bound)
+    {
+        long [] a = new long[count];
+
+        fillRandomArray(r, a, min, bound);
 
         return a;
     }
