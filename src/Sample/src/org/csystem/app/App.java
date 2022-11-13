@@ -1,83 +1,42 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	Pair sınıfı
+	Aşağıdaki örneği inceleyiniz. Örnek durumu göstermek için yazılmıştır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.console.Console;
-import org.csystem.util.string.StringUtil;
-import org.csystem.util.tuple.Pair;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 class App {
 	public static void main(String [] args)
 	{
-		Random r = new Random();
-		ArrayList<Pair<String, Sensor>> sensors = new ArrayList<>();
-		int count = Console.readInt("Bir sayı giriniz:");
-
-		for (int i = 0; i < count; ++i) {
-			String name = StringUtil.getRandomTextTR(r, 10);
-			sensors.add(Pair.of(name, new Sensor(i + 1, name, Util.getRandomHost(r))));
-		}
-
-		for (Pair<String, Sensor> pair : sensors)
-			System.out.println(pair.getSecond());
+		Sample s = new Sample();
+		System.out.println(s.getValue());
+		System.out.println("-------------------------");
+		Sample k = new Sample(10);
+		System.out.println(k.getValue());
 	}
 }
 
-class Util {
-	public static String getRandomHost(Random r)
-	{
-		return r.nextInt(256) + "." + r.nextInt(256) + "." + r.nextInt(256) + "." + r.nextInt(256);
-	}
-}
+class Sample {
+	private static final Random RANDOM = new Random();
+	private int m_value;
 
-class Sensor {
-	private int m_id;
-	private String m_name;
-	private String m_host;
-
-	public Sensor(int id, String name, String host)
 	{
-		m_id = id;
-		m_name = name;
-		m_host = host;
+		m_value = RANDOM.nextInt(100);
+		System.out.printf("value:%d%n", m_value);
 	}
 
-	public int getId()
+	public Sample()
 	{
-		return m_id;
+
 	}
 
-	public void setId(int id)
+	public Sample(int a)
 	{
-		m_id = id;
+		m_value += a;
 	}
 
-	public String getName()
+	public int getValue()
 	{
-		return m_name;
-	}
-
-	public void setName(String name)
-	{
-		m_name = name;
-	}
-
-	public String getHost()
-	{
-		return m_host;
-	}
-
-	public void setHost(String host)
-	{
-		m_host = host;
-	}
-
-	public String toString()
-	{
-		return String.format("[%d]%s %s", m_id, m_name, m_host);
+		return m_value;
 	}
 }

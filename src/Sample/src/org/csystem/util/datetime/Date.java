@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Date.java
 	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 07.10.2022
+	LAST UPDATE : 13.11.2022
 
 	Date class that represents a local date
 
@@ -16,14 +16,17 @@ import static org.csystem.util.datetime.DateUtil.MONTHS;
 import static org.csystem.util.datetime.DateUtil.DAY_OF_WEEKS;
 
 public class Date {
-    private static final String [] MONTHS_TR = {"", "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz",
-            "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"};
+    private static final String [] MONTHS_TR;
+    private static final String [] DAYS_OF_WEEK_TR;
+    private static final String [] MONTHS_EN;
+    private static final String [] DAYS_OF_WEEK_EN;
 
-    private static final String [] DAYS_OF_WEEK_TR = {"Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"};
-
-    private static final String [] MONTHS_EN = {"", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-
-    private static final String [] DAYS_OF_WEEK_EN = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+    static {
+        MONTHS_TR = new String[]{"", "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"};
+        DAYS_OF_WEEK_TR = new String[]{"Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"};
+        MONTHS_EN = new String[]{"", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        DAYS_OF_WEEK_EN = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+    }
 
     private static int getDayOfYear(int day, int month, int year)
     {
