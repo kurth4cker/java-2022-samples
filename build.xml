@@ -1,0 +1,21 @@
+<project name="java-2022-samples" basedir="." default="build">
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value="build"/>
+	<property name="classes.dir" value="${build.dir}/classes"/>
+	<property name="jar.dir" value="${build.dir}/jar"/>
+
+	<property name="main-class" value="org.csystem.app.App"/>
+
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+	</target>
+
+	<target name="build">
+		<mkdir dir="${classes.dir}"/>
+		<javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}"/>
+	</target>
+
+	<target name="run" depends="build">
+		<java classname="${main-class}" classpath="${classes.dir}" fork="true"/>
+	</target>
+</project>
