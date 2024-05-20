@@ -1,17 +1,11 @@
-/*----------------------------------------------------------------------
-	FILE        : AnalyticalCircle.java
-	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 13.08.2022
+// All Rights Free
+// Copyleft (c) 1993 by C and System Programmers Association (CSD)
+// Copyleft (c) 2024 kurth4cker <kurth4cker@gmail.com>
 
-	AnalyticalCircle class that represents a circle in 2D plane
-
-	Copyleft (c) 1993 by C and System Programmers Association (CSD)
-	All Rights Free
------------------------------------------------------------------------*/
 package org.csystem.util.math.geometry;
 
 public class AnalyticalCircle extends Circle {
-    private final MutablePoint m_center;
+    private final MutablePoint center;
 
     public AnalyticalCircle(double radius)
     {
@@ -26,27 +20,27 @@ public class AnalyticalCircle extends Circle {
     public AnalyticalCircle(double radius, int x, int y)
     {
         super(radius);
-        m_center = new MutablePoint(x, y);
+        this.center = new MutablePoint(x, y);
     }
 
     public int getX()
     {
-        return m_center.getX();
+        return this.center.getX();
     }
 
     public void setX(int x)
     {
-        m_center.setX(x);
+        this.center.setX(x);
     }
 
     public int getY()
     {
-        return m_center.getY();
+        return this.center.getY();
     }
 
     public void setY(int y)
     {
-        m_center.setY(y);
+        this.center.setY(y);
     }
 
     public void set(int x, int y)
@@ -63,7 +57,7 @@ public class AnalyticalCircle extends Circle {
 
     public boolean isInside(int x, int y)
     {
-        return m_center.distance(x, y) <= getRadius();
+        return this.center.distance(x, y) <= getRadius();
     }
 
     public void offset(int dxy)
@@ -73,12 +67,11 @@ public class AnalyticalCircle extends Circle {
 
     public void offset(int dx, int dy)
     {
-        m_center.offset(dx, dy);
+        this.center.offset(dx, dy);
     }
-
 
     public double radiusDistance(AnalyticalCircle other)
     {
-        return m_center.distance(other.m_center);
+        return this.center.distance(other.center);
     }
 }

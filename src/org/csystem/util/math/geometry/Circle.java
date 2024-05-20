@@ -1,44 +1,38 @@
-/*----------------------------------------------------------------------
-	FILE        : Circle.java
-	AUTHOR      : Java-Feb-2022 Group
-	LAST UPDATE : 17.07.2022
+// All Rights Free
+// Copyleft (c) 1993 by C and System Programmers Association (CSD)
+// Copyleft (c) 2024 kurth4cker <kurth4cker@gmail.com>
 
-	Circle class that represents a circle
-
-	Copyleft (c) 1993 by C and System Programmers Association (CSD)
-	All Rights Free
------------------------------------------------------------------------*/
 package org.csystem.util.math.geometry;
 
 public class Circle {
-    private double m_r;
+    private double radius;
 
     public Circle()
     {
     }
 
-    public Circle(double r)
+    public Circle(double radius)
     {
-        setRadius(r);
+        setRadius(radius);
     }
 
     public double getRadius()
     {
-        return m_r;
+        return this.radius;
     }
 
-    public void setRadius(double r)
+    public void setRadius(double radius)
     {
-        m_r = Math.abs(r);
+        this.radius = Math.abs(radius);
     }
 
     public double getArea()
     {
-        return Math.PI * m_r * m_r;
+        return Math.PI * this.radius * this.radius;
     }
 
     public double getCircumference()
     {
-        return 2 * Math.PI * m_r;
+        return 2 * Math.PI * this.radius;
     }
 }
